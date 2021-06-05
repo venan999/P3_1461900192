@@ -6,6 +6,13 @@
                 <div class="col-8">
                     {{-- <a href="{{ route('mahasiswa.create') }}" class="tambah">Tambah Data</a> --}}
                     <h3>Data Buku</h3>
+
+                    <form class="d-flex" action="/show" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                            value="{{ request()->get('query') }}" name="query">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <br>
                     <a type="button" class="btn btn-primary" href="/tambah">Tambah Data</a>
                     <table class="table">
                         <thead class="thead-dark">

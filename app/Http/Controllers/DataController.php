@@ -15,10 +15,18 @@ class DataController extends Controller
      */
     public function index()
     {
-        $buku = DB::table('buku')
-            ->select('*')
-            ->get();
-        return view('show', ['buku' => $buku]);
+        //$buku = DB::table('buku')
+        //     ->select('*')
+        //     ->get();
+        // return view('show', ['buku' => $buku]);
+        $buku = Data::select('*');
+        if (request()->has('query')) {
+            $q = request()->get('query');
+            $buku->where('judul', 'LIKE', '%' . $q . '%')
+                ->orWhere('tahun_terbit', 'LIKE', '%' . $q . '%');
+        }
+        $buku = $buku->orderBy('judul', 'ASC')->get();
+        return view('show')->with('buku', $buku);
         //->where('id_kelas', '=', '03')
         //->join('ms_kategori','ms_buku.kode_kategori','=','ms_kategori.kode_kategori')
 
