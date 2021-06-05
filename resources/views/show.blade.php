@@ -26,7 +26,13 @@
                                     <td>
                                         <a type="button" class="btn btn-success"
                                             href="{{ url('show/' . $bk->id . '/edit') }}">Edit</a>
-                                        <a type="button" class="btn btn-danger">Hapus</a>
+                                        {{-- <a type="button" class="btn btn-danger"
+                                            href="{{ url('show/' . $bk->id) }}">Hapus</a> --}}
+                                        <form action="{{ url('show/' . $bk->id) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="delete">
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

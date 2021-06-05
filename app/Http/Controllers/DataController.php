@@ -102,6 +102,8 @@ class DataController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $buku = Data::find($id);
+        $buku->delete();
+        return redirect('show');
     }
 }
